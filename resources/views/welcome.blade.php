@@ -31,6 +31,28 @@
             padding: 24px;
         }
 
+        .nav-links {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: #EDEDEC;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 4px;
+            transition: background-color 0.15s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         .card {
             max-width: 800px;
             width: 100%;
@@ -75,6 +97,19 @@
 </head>
 
 <body>
+    @if (Route::has('login'))
+    <nav class="nav-links">
+        @auth
+        <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+        @else
+        <a href="{{ route('login') }}" class="nav-link">Log in</a>
+        @if (Route::has('register'))
+        <a href="{{ route('register') }}" class="nav-link">Register</a>
+        @endif
+        @endauth
+    </nav>
+    @endif
+
     <div class="card">
         <h1 class="name">Muhammad Array Al-khozini</h1>
         <p class="nim">20230140208</p>
